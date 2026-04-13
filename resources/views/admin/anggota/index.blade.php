@@ -207,6 +207,22 @@
         gap: 5px;
         justify-content: center;
     }
+
+    .member-card-modal .card-wrapper { background: #ffffff; border-radius: 18px; overflow: hidden; width: 540px; height: 340px; border: 1px solid rgba(25,118,210,0.12); position: relative; display: inline-block; }
+    .member-card-modal .card-header { background: linear-gradient(135deg, #0d47a1 0%, #1976d2 50%, #2196f3 100%); color: #fff; padding: 8px 10px; position: relative; }
+    .member-card-modal .card-header .title { font-size: 18px; line-height: 30px; font-weight: 800; letter-spacing: 0.6px; text-transform: uppercase; }
+    .member-card-modal .card-header .subtitle { font-size: 11px; opacity: 0.9; }
+    .member-card-modal .logo-right { position: absolute; right: 10px; top: 8px; width: 44px; height: 44px; border-radius: 50%; background: rgba(255,255,255,0.18); display: flex; align-items: center; justify-content: center; overflow: hidden; }
+    .member-card-modal .logo-right img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
+    .member-card-modal .card-body { padding: 8px 10px; display: grid; grid-template-columns: 162px 1fr; gap: 8px; }
+    .member-card-modal .photo { width: 162px; height: 216px; border-radius: 8px; background: linear-gradient(180deg, #f7f7f7 0, #f1f1f1 100%); display: flex; align-items: center; justify-content: center; overflow: hidden; border: 1px solid #e7e7e7; }
+    .member-card-modal .photo img { width: 100%; height: 100%; object-fit: cover; }
+        .member-card-modal .info-table { width: 100%; font-size: 13px; border-collapse: separate; border-spacing: 0 3px; }
+        .member-card-modal .info-table td { padding: 0 5px; vertical-align: top; line-height: 18px; text-align: left; }
+        .member-card-modal .label { width: 120px; color: #0d47a1; font-weight: 700; text-transform: uppercase; letter-spacing: 0.3px; font-size: 13px; line-height: 18px; text-align: left; }
+        .member-card-modal .colon { width: 12px; color: #8a8a8a; }
+        .member-card-modal .value { color: #2a2a2a; font-weight: 600; font-size: 13px; line-height: 18px; text-align: left; }
+    .member-card-modal .barcode-fixed { position: absolute; right: 10px; bottom: 8px; }
     
     /* Search & Filter Styling */
     .filter-section {
@@ -324,16 +340,22 @@
                 <h5 class="mb-0">
                     <i class="fas fa-users me-2"></i>Data Anggota
                 </h5>
-                <a href="{{ route('anggota.create') }}" class="btn btn-primary btn-sm">
-                    <i class="fas fa-plus me-2"></i>Tambah Anggota
-                </a>
+                <div class="d-flex gap-2">
+                    <button type="button" id="downloadSelectedBtn" class="btn btn-outline-success btn-sm" onclick="downloadSelectedCardsZip()" disabled>
+                        <i class="fas fa-file-archive me-2"></i>Download Terpilih (ZIP)
+                    </button>
+                    <button type="button" id="loadAllBtn" class="btn btn-outline-dark btn-sm" onclick="loadAllAnggota()">
+                        <i class="fas fa-list me-2"></i>Tampil Semua (tanpa reload)
+                    </button>
+                    <a href="{{ route('anggota.create') }}" class="btn btn-primary btn-sm">
+                        <i class="fas fa-plus me-2"></i>Tambah Anggota
+                    </a>
+                </div>
             </div>
         </div>
         <div class="card-body">
-            @if($anggotas->count() > 0)
-                <!-- Filter & Search Section -->
-                <div class="filter-section">
-                <form method="GET" action="{{ route('anggota.index') }}" class="row">
+            <div class="filter-section">
+            <form method="GET" action="{{ route('anggota.index') }}" class="row">
                     <div class="col-md-6 mb-2">
                         <div class="input-group">
                             <span class="input-group-text bg-light">
@@ -372,13 +394,39 @@
                             <option value="bidang komunikasi publik" {{ request('jabatan') == 'bidang komunikasi publik' ? 'selected' : '' }}>Bidang Komunikasi Publik</option>
                         </select>
                     </div>
+                    <div class="col-md-3 mb-2">
+                        <select class="form-select" name="provinsi" onchange="this.form.submit()">
+                            <option value="">Semua Provinsi</option>
+                            @isset($provinsiOptions)
+                                @foreach($provinsiOptions as $p)
+                                    <option value="{{ $p->id }}" {{ (string)request('provinsi') === (string)$p->id ? 'selected' : '' }}>
+                                        {{ $p->nama }}
+                                    </option>
+                                @endforeach
+                            @endisset
+                        </select>
+                    </div>
+                    <div class="col-md-3 mb-2">
+                        <select class="form-select" name="cabang" onchange="this.form.submit()">
+                            <option value="">Semua Cabang</option>
+                            @isset($cabangOptions)
+                                @foreach($cabangOptions as $c)
+                                    <option value="{{ $c->parent_id_cabang }}" {{ (string)request('cabang') === (string)$c->parent_id_cabang ? 'selected' : '' }}>
+                                        {{ $c->nama }}@if($c->parent) — {{ $c->parent->nama }} @endif
+                                    </option>
+                                @endforeach
+                            @endisset
+                        </select>
+                    </div>
                 </form>
                 </div>
+            @if($anggotas->count() > 0)
 
                 <div class="table-responsive">
                     <table class="table table-hover">
                         <thead>
                             <tr>
+                                <th class="text-center" style="width: 40px;"><input type="checkbox" id="selectAll"></th>
                                 <th class="text-center" style="width: 70px;">Foto</th>
                                 <th>Nama</th>
                                 <th>Email</th>
@@ -386,12 +434,27 @@
                                 <th>Jabatan</th>
                                 <th>Aktif di</th>
                                 <th class="text-center">Status</th>
-                                <th class="text-center" style="width: 150px;">Aksi</th>
+                                <th class="text-center" style="width: 180px;">Aksi</th>
                             </tr>
                         </thead>
                         <tbody id="tableBody">
                             @foreach($anggotas as $anggota)
                                 <tr>
+                                    @php
+                                        $wilayahCabang = \App\Models\Wilayah::where('parent_id_cabang', $anggota->parent_id_cabang)->first();
+                                        $provinsiNama = $wilayahCabang && $wilayahCabang->parent ? $wilayahCabang->parent->nama : null;
+                                        $cabangNama = $wilayahCabang ? $wilayahCabang->nama : null;
+                                    @endphp
+                                    <td class="text-center">
+                                        <input type="checkbox" class="select-card"
+                                               data-id="{{ $anggota->id }}"
+                                               data-nama="{{ $anggota->nama }}"
+                                               data-telepon="{{ $anggota->telepon }}"
+                                               data-jenis_kelamin="{{ $anggota->jenis_kelamin }}"
+                                               data-daerah="{{ ($cabangNama ?? '-') . ' — ' . ($provinsiNama ?? '-') }}"
+                                               data-alamat="{{ $anggota->alamat }}"
+                                               data-foto="{{ $anggota->foto ? asset('storage/anggotas/' . $anggota->foto) : '' }}">
+                                    </td>
                                     <td class="text-center">
                                         <a href="{{ route('anggota.show', $anggota->id) }}" class="d-inline-block" style="text-decoration: none;">
                                             @if($anggota->foto)
@@ -441,6 +504,22 @@
                                     </td>
                                     <td class="text-center">
                                         <div class="action-buttons">
+                                            @php
+                                                $wilayahCabang = \App\Models\Wilayah::where('parent_id_cabang', $anggota->parent_id_cabang)->first();
+                                                $provinsiNama = $wilayahCabang && $wilayahCabang->parent ? $wilayahCabang->parent->nama : null;
+                                                $cabangNama = $wilayahCabang ? $wilayahCabang->nama : null;
+                                            @endphp
+                                            <button type="button" class="btn btn-success btn-sm" title="Download Kartu Nama"
+                                                data-id="{{ $anggota->id }}"
+                                                data-nama="{{ $anggota->nama }}"
+                                                data-telepon="{{ $anggota->telepon }}"
+                                                data-jenis_kelamin="{{ $anggota->jenis_kelamin }}"
+                                                data-daerah="{{ ($cabangNama ?? '-') . ' — ' . ($provinsiNama ?? '-') }}"
+                                                data-alamat="{{ $anggota->alamat }}"
+                                                data-foto="{{ $anggota->foto ? asset('storage/anggotas/' . $anggota->foto) : '' }}"
+                                                onclick="openDownloadCardModal(this)">
+                                                <i class="fas fa-id-card"></i>
+                                            </button>
                                             <a href="{{ route('anggota.show', $anggota->id) }}" 
                                                class="btn btn-info btn-sm" title="Lihat Detail">
                                                 <i class="fas fa-eye"></i>
@@ -546,18 +625,97 @@
             @else
                 <div class="text-center py-5">
                     <i class="fas fa-users fa-3x text-muted mb-3"></i>
-                    <h5 class="text-muted">Belum ada data anggota</h5>
-                    <p class="text-muted">Klik tombol "Tambah Anggota" untuk menambahkan anggota pertama.</p>
-                    <a href="{{ route('anggota.create') }}" class="btn btn-primary">
-                        <i class="fas fa-plus me-2"></i>Tambah Anggota Pertama
-                    </a>
+                    @if(request()->has('search') || request('status') || request('jabatan') || request('provinsi') || request('cabang'))
+                        <h5 class="text-muted">Tidak ada data sesuai filter</h5>
+                        <p class="text-muted">Ubah filter atau reset untuk melihat semua data.</p>
+                        <a href="{{ route('anggota.index') }}" class="btn btn-outline-secondary">
+                            <i class="fas fa-undo me-2"></i>Reset Filter
+                        </a>
+                    @else
+                        <h5 class="text-muted">Belum ada data anggota</h5>
+                        <p class="text-muted">Klik tombol "Tambah Anggota" untuk menambahkan anggota pertama.</p>
+                        <a href="{{ route('anggota.create') }}" class="btn btn-primary">
+                            <i class="fas fa-plus me-2"></i>Tambah Anggota Pertama
+                        </a>
+                    @endif
                 </div>
             @endif
+        </div>
+    </div>
+    <div id="bulkCardRender" style="position: fixed; left: -10000px; top: -10000px; width:0; height:0; overflow:hidden;"></div>
+    <div class="modal fade" id="downloadCardModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content member-card-modal">
+                <div class="modal-header">
+                    <h5 class="modal-title"><i class="fas fa-id-card me-2"></i>Preview Kartu Nama</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body text-center">
+                    <div class="card-wrapper mx-auto">
+                        <div class="card-header">
+                            <div class="logo-right">
+                                <img src="{{ asset('images/rtik.jpg') }}" alt="Logo">
+                            </div>
+                            <div class="title">Kartu anggota Relawan TIK</div>
+                            <div class="subtitle">Identitas anggota</div>
+                        </div>
+                        <div class="card-body">
+                            <div class="photo">
+                                <img id="cardFoto" src="" alt="Foto">
+                            </div>
+                            <table class="info-table">
+                                <tr>
+                                    <td class="label">NIA</td>
+                                    <td class="colon">:</td>
+                                    <td class="value"></td>
+                                </tr>
+                                <tr>
+                                    <td class="label">Nama</td>
+                                    <td class="colon">:</td>
+                                    <td class="value" id="cardNama"></td>
+                                </tr>
+                                <tr>
+                                    <td class="label">Telepon</td>
+                                    <td class="colon">:</td>
+                                    <td class="value" id="cardTelepon"></td>
+                                </tr>
+                                <tr>
+                                    <td class="label">Jenis Kelamin</td>
+                                    <td class="colon">:</td>
+                                    <td class="value" id="cardJK"></td>
+                                </tr>
+                                <tr>
+                                    <td class="label">Daerah</td>
+                                    <td class="colon">:</td>
+                                    <td class="value" id="cardDaerah"></td>
+                                </tr>
+                                <tr>
+                                    <td class="label">Alamat</td>
+                                    <td class="colon">:</td>
+                                    <td class="value" id="cardAlamat"></td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="barcode-fixed">
+                            <div id="qrcode-card-index" style="width:60px;height:60px;"></div>
+                        </div>
+                    </div>
+                    <div class="mt-3 text-muted" id="downloadStatus" style="display:none;">Mengunduh...</div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                    <button type="button" class="btn btn-primary" onclick="downloadMemberCardFromModal()">Download PNG</button>
+                </div>
+            </div>
         </div>
     </div>
 @endsection
 
 @section('scripts')
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.7.1/jszip.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
 <script>
     document.addEventListener('DOMContentLoaded', function() {
         // Auto-submit form when typing (with debounce)
@@ -576,6 +734,216 @@
                 }, 500);
             });
         }
+
+        const selectAll = document.getElementById('selectAll');
+        const downloadBtn = document.getElementById('downloadSelectedBtn');
+        function updateDownloadBtnState() {
+            const selected = document.querySelectorAll('.select-card:checked');
+            downloadBtn.disabled = selected.length === 0;
+        }
+        if (selectAll) {
+            selectAll.addEventListener('change', function(){
+                document.querySelectorAll('.select-card').forEach(cb => { cb.checked = selectAll.checked; });
+                updateDownloadBtnState();
+            });
+        }
+        document.querySelectorAll('.select-card').forEach(cb => {
+            cb.addEventListener('change', function(){
+                if (!this.checked && selectAll.checked) selectAll.checked = false;
+                updateDownloadBtnState();
+            });
+        });
     });
+
+    function openDownloadCardModal(btn) {
+        const id = btn.getAttribute('data-id');
+        const nama = btn.getAttribute('data-nama') || '';
+        const telp = btn.getAttribute('data-telepon') || '';
+        const jk = btn.getAttribute('data-jenis_kelamin') || '';
+        const daerah = btn.getAttribute('data-daerah') || '';
+        const alamat = btn.getAttribute('data-alamat') || '';
+        const foto = btn.getAttribute('data-foto') || '';
+
+        document.getElementById('cardNama').textContent = nama;
+        document.getElementById('cardTelepon').textContent = telp || '-';
+        document.getElementById('cardJK').textContent = jk || '-';
+        document.getElementById('cardDaerah').textContent = daerah || '-';
+        document.getElementById('cardAlamat').textContent = alamat || '-';
+
+        const imgEl = document.getElementById('cardFoto');
+        if (foto) { imgEl.src = foto; } else { imgEl.src = ''; }
+
+        const qrEl = document.getElementById('qrcode-card-index');
+        qrEl.innerHTML = '';
+        new QRCode(qrEl, {
+            text: '{{ url('/anggota/profil') }}' + '/' + id,
+            width: 60,
+            height: 60,
+            colorDark: '#000000',
+            colorLight: '#ffffff',
+            correctLevel: QRCode.CorrectLevel.H
+        });
+
+        const modalEl = document.getElementById('downloadCardModal');
+        const modal = new bootstrap.Modal(modalEl);
+        modal.show();
+        setTimeout(downloadMemberCardFromModal, 600);
+    }
+
+    function downloadMemberCardFromModal() {
+        const wrapper = document.querySelector('#downloadCardModal .card-wrapper');
+        if (!wrapper) return;
+        document.getElementById('downloadStatus').style.display = 'block';
+        html2canvas(wrapper, { scale: 2, useCORS: true, backgroundColor: null }).then(function(canvas) {
+            const image = canvas.toDataURL('image/png');
+            const link = document.createElement('a');
+            const nama = document.getElementById('cardNama').textContent || 'Kartu-Anggota';
+            link.download = 'Kartu-' + nama + '.png';
+            link.href = image;
+            link.click();
+            document.getElementById('downloadStatus').style.display = 'none';
+        });
+    }
+
+    async function renderCardPng(member) {
+        const container = document.getElementById('bulkCardRender');
+        const wrapper = document.createElement('div');
+        wrapper.className = 'member-card-modal';
+        wrapper.innerHTML = `
+        <div class="card-wrapper">
+            <div class="card-header">
+                <div class="logo-right"><img src="{{ asset('images/rtik.jpg') }}" alt="Logo"></div>
+                <div class="title">Kartu anggota Relawan TIK</div>
+                <div class="subtitle">Identitas anggota</div>
+            </div>
+            <div class="card-body">
+                <div class="photo">${member.foto ? `<img src="${member.foto}"/>` : '<span style="font-size:12pt;color:#888;">No Foto</span>'}</div>
+                <table class="info-table">
+                    <tr><td class="label">NIA</td><td class="colon">:</td><td class="value"></td></tr>
+                    <tr><td class="label">Nama</td><td class="colon">:</td><td class="value">${member.nama || '-'}</td></tr>
+                    <tr><td class="label">Telepon</td><td class="colon">:</td><td class="value">${member.telepon || '-'}</td></tr>
+                    <tr><td class="label">Jenis Kelamin</td><td class="colon">:</td><td class="value">${member.jenis_kelamin || '-'}</td></tr>
+                    <tr><td class="label">Daerah</td><td class="colon">:</td><td class="value">${member.daerah || '-'}</td></tr>
+                    <tr><td class="label">Alamat</td><td class="colon">:</td><td class="value">${member.alamat || '-'}</td></tr>
+                </table>
+            </div>
+            <div class="barcode-fixed"><div id="qrcode-card-bulk-${member.id}" style="width:60px;height:60px;"></div></div>
+        </div>`;
+        container.appendChild(wrapper);
+        new QRCode(document.getElementById(`qrcode-card-bulk-${member.id}`), {
+            text: '{{ url('/anggota/profil') }}' + '/' + member.id,
+            width: 60,
+            height: 60,
+            colorDark: '#000000',
+            colorLight: '#ffffff',
+            correctLevel: QRCode.CorrectLevel.H
+        });
+        await new Promise(r => setTimeout(r, 300));
+        const card = wrapper.querySelector('.card-wrapper');
+        const canvas = await html2canvas(card, { scale: 2, useCORS: true, backgroundColor: null });
+        const dataUrl = canvas.toDataURL('image/png');
+        container.removeChild(wrapper);
+        return dataUrl;
+    }
+
+    async function downloadSelectedCardsZip() {
+        const selected = Array.from(document.querySelectorAll('.select-card:checked'));
+        if (selected.length === 0) return;
+        const zip = new JSZip();
+        const folder = zip.folder('kartu-anggota');
+        for (const cb of selected) {
+            const member = {
+                id: cb.getAttribute('data-id'),
+                nama: cb.getAttribute('data-nama'),
+                telepon: cb.getAttribute('data-telepon'),
+                jenis_kelamin: cb.getAttribute('data-jenis_kelamin'),
+                daerah: cb.getAttribute('data-daerah'),
+                alamat: cb.getAttribute('data-alamat'),
+                foto: cb.getAttribute('data-foto')
+            };
+            const pngDataUrl = await renderCardPng(member);
+            const base64 = pngDataUrl.split(',')[1];
+            folder.file(`Kartu-${member.nama || member.id}.png`, base64, { base64: true });
+        }
+        const blob = await zip.generateAsync({ type: 'blob' });
+        const ts = new Date();
+        const name = `kartu-anggota-${ts.getFullYear()}${('0'+(ts.getMonth()+1)).slice(-2)}${('0'+ts.getDate()).slice(-2)}-${('0'+ts.getHours()).slice(-2)}${('0'+ts.getMinutes()).slice(-2)}.zip`;
+        saveAs(blob, name);
+    }
+
+    async function loadAllAnggota() {
+        const form = document.querySelector('form[action="{{ route('anggota.index') }}"]');
+        const params = new URLSearchParams(new FormData(form));
+        const url = '{{ route('anggota.api') }}' + '?' + params.toString();
+        const loadBtn = document.getElementById('loadAllBtn');
+        loadBtn.disabled = true;
+        loadBtn.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Memuat...';
+        try {
+            const res = await fetch(url, { headers: { 'Accept': 'application/json' } });
+            const json = await res.json();
+            const tbody = document.getElementById('tableBody');
+            const rows = [];
+            json.items.forEach(item => {
+                rows.push(`
+                <tr>
+                    <td class="text-center">
+                        <input type="checkbox" class="select-card"
+                               data-id="${item.id}"
+                               data-nama="${item.nama || ''}"
+                               data-telepon="${item.telepon || ''}"
+                               data-jenis_kelamin="${item.jenis_kelamin || ''}"
+                               data-daerah="${item.daerah || '-'}"
+                               data-alamat="${item.alamat || ''}"
+                               data-foto="${item.foto || ''}">
+                    </td>
+                    <td class="text-center">
+                        ${item.foto ? `<img src="${item.foto}" alt="${item.nama}" class="avatar" style="cursor:pointer;">` : `<div class="avatar bg-secondary d-inline-flex align-items-center justify-content-center"><i class="fas fa-user text-white"></i></div>`}
+                    </td>
+                    <td>
+                        <strong class="clickable-name">${item.nama}</strong>
+                    </td>
+                    <td>${item.email || ''}</td>
+                    <td>${item.telepon || ''}</td>
+                    <td>${item.jabatan ? `<span class="badge bg-info">${item.jabatan}</span>` : '<span class="text-muted">-</span>'}</td>
+                    <td><span class="badge bg-secondary">-</span></td>
+                    <td class="text-center">
+                        <span class="badge ${item.status === 'Aktif' ? 'bg-success' : 'bg-danger'}">${item.status}</span>
+                    </td>
+                    <td class="text-center">
+                        <div class="action-buttons">
+                            <button type="button" class="btn btn-success btn-sm" title="Download Kartu Nama"
+                                data-id="${item.id}"
+                                data-nama="${item.nama || ''}"
+                                data-telepon="${item.telepon || ''}"
+                                data-jenis_kelamin="${item.jenis_kelamin || ''}"
+                                data-daerah="${item.daerah || ''}"
+                                data-alamat="${item.alamat || ''}"
+                                data-foto="${item.foto || ''}"
+                                onclick="openDownloadCardModal(this)">
+                                <i class="fas fa-id-card"></i>
+                            </button>
+                        </div>
+                    </td>
+                </tr>`);
+            });
+            tbody.innerHTML = rows.join('');
+            // Disable pagination controls when showing all
+            const pagination = document.querySelector('nav[aria-label="Pagination"]');
+            if (pagination) pagination.style.display = 'none';
+            const info = document.querySelector('.pagination-info');
+            if (info) info.innerHTML = `<i class="fas fa-info-circle me-2"></i>Menampilkan <strong>${json.count}</strong> anggota (tampil semua)`;
+            // Rebind checkbox listeners
+            document.querySelectorAll('.select-card').forEach(cb => {
+                cb.addEventListener('change', function(){
+                    updateDownloadBtnState();
+                });
+            });
+        } catch (e) {
+            alert('Gagal memuat semua anggota.');
+        } finally {
+            loadBtn.disabled = false;
+            loadBtn.innerHTML = '<i class="fas fa-list me-2"></i>Tampil Semua (tanpa reload)';
+        }
+    }
 </script>
 @endsection

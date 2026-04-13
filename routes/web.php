@@ -51,7 +51,9 @@ Route::prefix('admin')->group(function () {
         Route::get('/analisis-keaktifan', [AdminAuthController::class, 'analisisKeaktifan'])->name('admin.analisis-keaktifan');
         Route::get('/analisis-keaktifan/export-pdf', [AdminAuthController::class, 'exportAnalisisPDF'])->name('admin.analisis-keaktifan.export-pdf');
         
-        // Anggota CRUD Routes
+        // Anggota Routes
+        Route::get('anggota/cards-pdf', [\App\Http\Controllers\AnggotaController::class, 'cardsPdf'])->name('anggota.cards-pdf');
+        Route::get('anggota/api', [\App\Http\Controllers\AnggotaController::class, 'apiIndex'])->name('anggota.api');
         Route::resource('anggota', \App\Http\Controllers\AnggotaController::class);
         
         // Riwayat Kegiatan CRUD Routes

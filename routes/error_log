@@ -22,3 +22,163 @@ Stack trace:
 Stack trace:
 #0 {main}
   thrown in /home/herb6535/public_html/app.rtikcmh.com/routes/web.php on line 7
+[15-Dec-2025 00:43:42 Asia/Jakarta] PHP Fatal error:  Uncaught Error: Class "Illuminate\Support\Facades\Route" not found in /home/herb6535/public_html/app.rtikcmh.com/routes/web.php:7
+Stack trace:
+#0 {main}
+  thrown in /home/herb6535/public_html/app.rtikcmh.com/routes/web.php on line 7
+[15-Dec-2025 01:04:07 Asia/Jakarta] PHP Fatal error:  Uncaught Error: Class "Illuminate\Support\Facades\Artisan" not found in /home/herb6535/public_html/app.rtikcmh.com/routes/console.php:6
+Stack trace:
+#0 {main}
+  thrown in /home/herb6535/public_html/app.rtikcmh.com/routes/console.php on line 6
+[15-Dec-2025 16:24:07 Asia/Jakarta] PHP Fatal error:  Uncaught Error: Class "Illuminate\Support\Facades\Artisan" not found in /home/herb6535/public_html/app.rtikcmh.com/routes/console.php:6
+Stack trace:
+#0 {main}
+  thrown in /home/herb6535/public_html/app.rtikcmh.com/routes/console.php on line 6
+[15-Dec-2025 18:45:26 Asia/Jakarta] PHP Fatal error:  Uncaught Error: Class "Illuminate\Support\Facades\Route" not found in /home/herb6535/public_html/app.rtikcmh.com/routes/web.php:7
+Stack trace:
+#0 {main}
+  thrown in /home/herb6535/public_html/app.rtikcmh.com/routes/web.php on line 7
+[15-Dec-2025 20:10:02 Asia/Jakarta] PHP Fatal error:  Uncaught Error: Class "Illuminate\Support\Facades\Artisan" not found in /home/herb6535/public_html/app.rtikcmh.com/routes/console.php:6
+Stack trace:
+#0 {main}
+  thrown in /home/herb6535/public_html/app.rtikcmh.com/routes/console.php on line 6
+[15-Dec-2025 22:35:38 Asia/Jakarta] PHP Fatal error:  Uncaught Error: Class "Illuminate\Support\Facades\Route" not found in /home/herb6535/public_html/app.rtikcmh.com/routes/web.php:7
+Stack trace:
+#0 {main}
+  thrown in /home/herb6535/public_html/app.rtikcmh.com/routes/web.php on line 7
+[16-Dec-2025 17:57:29 Asia/Jakarta] PHP Fatal error:  Uncaught Error: Class "Illuminate\Support\Facades\Artisan" not found in /home/herb6535/public_html/app.rtikcmh.com/routes/console.php:6
+Stack trace:
+#0 {main}
+  thrown in /home/herb6535/public_html/app.rtikcmh.com/routes/console.php on line 6
+[16-Dec-2025 19:55:59 Asia/Jakarta] PHP Fatal error:  Uncaught Error: Class "Illuminate\Support\Facades\Route" not found in /home/herb6535/public_html/app.rtikcmh.com/routes/web.php:7
+Stack trace:
+#0 {main}
+  thrown in /home/herb6535/public_html/app.rtikcmh.com/routes/web.php on line 7
+[19-Dec-2025 11:50:39 Asia/Jakarta] PHP Fatal error:  Uncaught Error: Class "Illuminate\Support\Facades\Artisan" not found in /home/herb6535/public_html/app.rtikcmh.com/routes/console.php:6
+Stack trace:
+#0 {main}
+  thrown in /home/herb6535/public_html/app.rtikcmh.com/routes/console.php on line 6
+[20-Dec-2025 04:38:23 Asia/Jakarta] PHP Fatal error:  Uncaught Error: Class "Illuminate\Support\Facades\Route" not found in /home/herb6535/public_html/app.rtikcmh.com/routes/web.php:7
+Stack trace:
+#0 {main}
+  thrown in /home/herb6535/public_html/app.rtikcmh.com/routes/web.php on line 7
+[20-Dec-2025 04:38:34 Asia/Jakarta] PHP Fatal error:  Uncaught Error: Class "Illuminate\Support\Facades\Artisan" not found in /home/herb6535/public_html/app.rtikcmh.com/routes/console.php:6
+Stack trace:
+#0 {main}
+  thrown in /home/herb6535/public_html/app.rtikcmh.com/routes/console.php on line 6
+[20-Dec-2025 20:25:35 Asia/Jakarta] PHP Fatal error:  Uncaught Error: Class "Illuminate\Support\Facades\Route" not found in /home/herb6535/public_html/app.rtikcmh.com/routes/web.php:7
+Stack trace:
+#0 {main}
+  thrown in /home/herb6535/public_html/app.rtikcmh.com/routes/web.php on line 7
+[21-Dec-2025 01:22:49 Asia/Jakarta] PHP Fatal error:  Uncaught Error: Class "Illuminate\Support\Facades\Artisan" not found in /home/herb6535/public_html/app.rtikcmh.com/routes/console.php:6
+Stack trace:
+#0 {main}
+  thrown in /home/herb6535/public_html/app.rtikcmh.com/routes/console.php on line 6
+[21-Dec-2025 01:24:56 Asia/Jakarta] PHP Fatal error:  Uncaught Error: Class "Illuminate\Support\Facades\Route" not found in /home/herb6535/public_html/app.rtikcmh.com/routes/web.php:7
+Stack trace:
+#0 {main}
+  thrown in /home/herb6535/public_html/app.rtikcmh.com/routes/web.php on line 7
+[21-Dec-2025 06:33:31 Asia/Jakarta] PHP Fatal error:  Uncaught Error: Class "Illuminate\Support\Facades\Artisan" not found in /home/herb6535/public_html/app.rtikcmh.com/routes/console.php:6
+Stack trace:
+#0 {main}
+  thrown in /home/herb6535/public_html/app.rtikcmh.com/routes/console.php on line 6
+[21-Dec-2025 06:37:47 Asia/Jakarta] PHP Fatal error:  Uncaught Error: Class "Illuminate\Support\Facades\Route" not found in /home/herb6535/public_html/app.rtikcmh.com/routes/web.php:7
+Stack trace:
+#0 {main}
+  thrown in /home/herb6535/public_html/app.rtikcmh.com/routes/web.php on line 7
+[11-Jan-2026 08:40:08 Asia/Jakarta] PHP Fatal error:  Uncaught Error: Class "Illuminate\Support\Facades\Artisan" not found in /home/herb6535/public_html/app.rtikcmh.com/routes/console.php:6
+Stack trace:
+#0 {main}
+  thrown in /home/herb6535/public_html/app.rtikcmh.com/routes/console.php on line 6
+[11-Jan-2026 08:40:08 Asia/Jakarta] PHP Fatal error:  Uncaught Error: Class "Illuminate\Support\Facades\Route" not found in /home/herb6535/public_html/app.rtikcmh.com/routes/web.php:7
+Stack trace:
+#0 {main}
+  thrown in /home/herb6535/public_html/app.rtikcmh.com/routes/web.php on line 7
+[11-Jan-2026 08:40:10 Asia/Jakarta] PHP Fatal error:  Uncaught Error: Class "Illuminate\Support\Facades\Artisan" not found in /home/herb6535/public_html/app.rtikcmh.com/routes/console.php:6
+Stack trace:
+#0 {main}
+  thrown in /home/herb6535/public_html/app.rtikcmh.com/routes/console.php on line 6
+[11-Jan-2026 08:40:11 Asia/Jakarta] PHP Fatal error:  Uncaught Error: Class "Illuminate\Support\Facades\Route" not found in /home/herb6535/public_html/app.rtikcmh.com/routes/web.php:7
+Stack trace:
+#0 {main}
+  thrown in /home/herb6535/public_html/app.rtikcmh.com/routes/web.php on line 7
+[11-Jan-2026 08:40:11 Asia/Jakarta] PHP Fatal error:  Uncaught Error: Class "Illuminate\Support\Facades\Artisan" not found in /home/herb6535/public_html/app.rtikcmh.com/routes/console.php:6
+Stack trace:
+#0 {main}
+  thrown in /home/herb6535/public_html/app.rtikcmh.com/routes/console.php on line 6
+[11-Jan-2026 08:40:12 Asia/Jakarta] PHP Fatal error:  Uncaught Error: Class "Illuminate\Support\Facades\Route" not found in /home/herb6535/public_html/app.rtikcmh.com/routes/web.php:7
+Stack trace:
+#0 {main}
+  thrown in /home/herb6535/public_html/app.rtikcmh.com/routes/web.php on line 7
+[09-Feb-2026 18:57:36 Asia/Jakarta] PHP Fatal error:  Uncaught Error: Class "Illuminate\Support\Facades\Artisan" not found in /home/herb6535/public_html/app.rtikcmh.com/routes/console.php:6
+Stack trace:
+#0 {main}
+  thrown in /home/herb6535/public_html/app.rtikcmh.com/routes/console.php on line 6
+[09-Feb-2026 19:07:25 Asia/Jakarta] PHP Fatal error:  Uncaught Error: Class "Illuminate\Support\Facades\Artisan" not found in /home/herb6535/public_html/app.rtikcmh.com/routes/console.php:6
+Stack trace:
+#0 {main}
+  thrown in /home/herb6535/public_html/app.rtikcmh.com/routes/console.php on line 6
+[09-Feb-2026 20:00:55 Asia/Jakarta] PHP Fatal error:  Uncaught Error: Class "Illuminate\Support\Facades\Artisan" not found in /home/herb6535/public_html/app.rtikcmh.com/routes/console.php:6
+Stack trace:
+#0 {main}
+  thrown in /home/herb6535/public_html/app.rtikcmh.com/routes/console.php on line 6
+[09-Feb-2026 21:20:03 Asia/Jakarta] PHP Fatal error:  Uncaught Error: Class "Illuminate\Support\Facades\Route" not found in /home/herb6535/public_html/app.rtikcmh.com/routes/web.php:10
+Stack trace:
+#0 {main}
+  thrown in /home/herb6535/public_html/app.rtikcmh.com/routes/web.php on line 10
+[09-Feb-2026 21:35:39 Asia/Jakarta] PHP Fatal error:  Uncaught Error: Class "Illuminate\Support\Facades\Route" not found in /home/herb6535/public_html/app.rtikcmh.com/routes/web.php:10
+Stack trace:
+#0 {main}
+  thrown in /home/herb6535/public_html/app.rtikcmh.com/routes/web.php on line 10
+[09-Feb-2026 22:32:05 Asia/Jakarta] PHP Fatal error:  Uncaught Error: Class "Illuminate\Support\Facades\Route" not found in /home/herb6535/public_html/app.rtikcmh.com/routes/web.php:10
+Stack trace:
+#0 {main}
+  thrown in /home/herb6535/public_html/app.rtikcmh.com/routes/web.php on line 10
+[11-Feb-2026 18:59:16 Asia/Jakarta] PHP Fatal error:  Uncaught Error: Class "Illuminate\Support\Facades\Artisan" not found in /home/herb6535/public_html/app.rtikcmh.com/routes/console.php:6
+Stack trace:
+#0 {main}
+  thrown in /home/herb6535/public_html/app.rtikcmh.com/routes/console.php on line 6
+[11-Feb-2026 18:59:17 Asia/Jakarta] PHP Fatal error:  Uncaught Error: Class "Illuminate\Support\Facades\Route" not found in /home/herb6535/public_html/app.rtikcmh.com/routes/web.php:10
+Stack trace:
+#0 {main}
+  thrown in /home/herb6535/public_html/app.rtikcmh.com/routes/web.php on line 10
+[11-Feb-2026 19:22:24 Asia/Jakarta] PHP Fatal error:  Uncaught Error: Class "Illuminate\Support\Facades\Artisan" not found in /home/herb6535/public_html/app.rtikcmh.com/routes/console.php:6
+Stack trace:
+#0 {main}
+  thrown in /home/herb6535/public_html/app.rtikcmh.com/routes/console.php on line 6
+[11-Feb-2026 19:22:26 Asia/Jakarta] PHP Fatal error:  Uncaught Error: Class "Illuminate\Support\Facades\Route" not found in /home/herb6535/public_html/app.rtikcmh.com/routes/web.php:10
+Stack trace:
+#0 {main}
+  thrown in /home/herb6535/public_html/app.rtikcmh.com/routes/web.php on line 10
+[14-Feb-2026 23:38:24 Asia/Jakarta] PHP Fatal error:  Uncaught Error: Class "Illuminate\Support\Facades\Route" not found in /home/herb6535/public_html/app.rtikcmh.com/routes/web.php:10
+Stack trace:
+#0 {main}
+  thrown in /home/herb6535/public_html/app.rtikcmh.com/routes/web.php on line 10
+[15-Feb-2026 03:32:44 Asia/Jakarta] PHP Fatal error:  Uncaught Error: Class "Illuminate\Support\Facades\Artisan" not found in /home/herb6535/public_html/app.rtikcmh.com/routes/console.php:6
+Stack trace:
+#0 {main}
+  thrown in /home/herb6535/public_html/app.rtikcmh.com/routes/console.php on line 6
+[15-Feb-2026 05:46:21 Asia/Jakarta] PHP Fatal error:  Uncaught Error: Class "Illuminate\Support\Facades\Artisan" not found in /home/herb6535/public_html/app.rtikcmh.com/routes/console.php:6
+Stack trace:
+#0 {main}
+  thrown in /home/herb6535/public_html/app.rtikcmh.com/routes/console.php on line 6
+[15-Feb-2026 06:01:38 Asia/Jakarta] PHP Fatal error:  Uncaught Error: Class "Illuminate\Support\Facades\Artisan" not found in /home/herb6535/public_html/app.rtikcmh.com/routes/console.php:6
+Stack trace:
+#0 {main}
+  thrown in /home/herb6535/public_html/app.rtikcmh.com/routes/console.php on line 6
+[15-Feb-2026 06:25:40 Asia/Jakarta] PHP Fatal error:  Uncaught Error: Class "Illuminate\Support\Facades\Route" not found in /home/herb6535/public_html/app.rtikcmh.com/routes/web.php:10
+Stack trace:
+#0 {main}
+  thrown in /home/herb6535/public_html/app.rtikcmh.com/routes/web.php on line 10
+[15-Feb-2026 07:37:26 Asia/Jakarta] PHP Fatal error:  Uncaught Error: Class "Illuminate\Support\Facades\Route" not found in /home/herb6535/public_html/app.rtikcmh.com/routes/web.php:10
+Stack trace:
+#0 {main}
+  thrown in /home/herb6535/public_html/app.rtikcmh.com/routes/web.php on line 10
+[15-Feb-2026 09:09:08 Asia/Jakarta] PHP Fatal error:  Uncaught Error: Class "Illuminate\Support\Facades\Route" not found in /home/herb6535/public_html/app.rtikcmh.com/routes/web.php:10
+Stack trace:
+#0 {main}
+  thrown in /home/herb6535/public_html/app.rtikcmh.com/routes/web.php on line 10
+[15-Feb-2026 10:47:17 Asia/Jakarta] PHP Fatal error:  Uncaught Error: Class "Illuminate\Support\Facades\Artisan" not found in /home/herb6535/public_html/app.rtikcmh.com/routes/console.php:6
+Stack trace:
+#0 {main}
+  thrown in /home/herb6535/public_html/app.rtikcmh.com/routes/console.php on line 6

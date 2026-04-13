@@ -240,6 +240,7 @@
             <a href="{{ route('landing') }}" class="footer-text text-decoration-none">
                 Kembali ke Beranda
             </a>
+            <span class="footer-text">Aplikasi ini dibuat oleh <strong>FURTIK</strong></span>
         </div>
     </footer>
 

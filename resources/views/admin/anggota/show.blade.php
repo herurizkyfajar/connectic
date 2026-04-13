@@ -177,11 +177,37 @@
         color: #757575;
         font-size: 0.875rem;
     }
+
+    .member-card .card-scroll { width: 100%; height: auto; overflow-x: auto; overflow-y: hidden; display: block; padding: 12px; box-sizing: border-box; }
+    .member-card .card-wrapper { background: #ffffff; border-radius: 18px; box-shadow: 0 20px 50px rgba(0,0,0,0.12); overflow: hidden; width: 540px; height: 340px; border: 1px solid rgba(25,118,210,0.12); position: relative; display: inline-block; }
+    .member-card .card-header { background: linear-gradient(135deg, #0d47a1 0%, #1976d2 50%, #2196f3 100%); color: #fff; padding: 8px 10px; position: relative; }
+    .member-card .card-header::after { content: ""; position: absolute; right: -60px; top: -40px; width: 160px; height: 160px; background: radial-gradient(closest-side, rgba(255,255,255,0.18), transparent 70%); transform: rotate(25deg); }
+    .member-card .card-header .title { font-size: 18px; line-height: 30px; font-weight: 800; letter-spacing: 0.6px; text-transform: uppercase; font-family: 'Montserrat','Inter','Roboto',sans-serif; }
+    .member-card .card-header .subtitle { font-size: 11px; opacity: 0.9; }
+    .member-card .logo-right { position: absolute; right: 10px; top: 8px; width: 44px; height: 44px; border-radius: 50%; background: rgba(255,255,255,0.18); display: flex; align-items: center; justify-content: center; backdrop-filter: blur(4px); overflow: hidden; }
+    .member-card .logo-right img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
+    .member-card .chip { display: inline-flex; align-items: center; gap: 8px; padding: 6px 12px; border-radius: 999px; font-weight: 600; font-size: 12px; margin-top: 10px; background: rgba(255,255,255,0.22); color: #fff; }
+    .member-card .card-body { padding: 8px 10px; display: grid; grid-template-columns: 162px 1fr; gap: 8px; }
+    .member-card .photo { width: 162px; height: 216px; border-radius: 8px; background: linear-gradient(180deg, #f7f7f7 0, #f1f1f1 100%); display: flex; align-items: center; justify-content: center; overflow: hidden; border: 1px solid #e7e7e7; box-shadow: inset 0 1px 0 rgba(255,255,255,0.6); }
+    .member-card .photo img { width: 100%; height: 100%; object-fit: cover; }
+    .member-card .photo i { font-size: 64px; color: #888; }
+    .member-card .info-table { width: 100%; font-size: 13px; border-collapse: separate; border-spacing: 0 3px; }
+    .member-card .info-table td { padding: 0 5px; vertical-align: top; line-height: 18px; }
+    .member-card .label { width: 120px; color: #0d47a1; font-weight: 700; text-transform: uppercase; letter-spacing: 0.3px; font-size: 13px; line-height: 18px; }
+    .member-card .colon { width: 12px; color: #8a8a8a; }
+    .member-card .value { color: #2a2a2a; font-weight: 600; font-size: 13px; line-height: 18px; }
+    .member-card .value.address { display: block; overflow: visible; line-height: 18px; }
+    .member-card .divider { height: 1px; background: linear-gradient(90deg, transparent, rgba(0,0,0,0.08), transparent); margin: 10px 0; }
+    .member-card .footer { display: block; padding: 0 10px 6px; }
+    .member-card .note { color: #5a5a5a; font-size: 10px; }
+    .member-card .info-col { display: flex; flex-direction: column; gap: 6px; }
+    .member-card .barcode-fixed { position: absolute; right: 10px; bottom: 8px; }
 </style>
 @endsection
 
 @section('scripts')
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 <script>
     var qrcode = new QRCode(document.getElementById("qrcode"), {
         text: "{{ route('anggota.profil', $anggota->id) }}",
@@ -191,6 +217,18 @@
         colorLight : "#ffffff",
         correctLevel : QRCode.CorrectLevel.H
     });
+
+    var qrcodeCardEl = document.getElementById("qrcode-card");
+    if (qrcodeCardEl) {
+        new QRCode(qrcodeCardEl, {
+            text: "{{ route('anggota.profil', $anggota->id) }}",
+            width: 60,
+            height: 60,
+            colorDark: "#000000",
+            colorLight: "#ffffff",
+            correctLevel: QRCode.CorrectLevel.H
+        });
+    }
 
     function downloadQRCode() {
         // Tunggu sebentar untuk memastikan QR code sudah di-render
@@ -217,6 +255,24 @@
             }
         }, 100);
     }
+
+    function downloadMemberCardPng() {
+        var el = document.querySelector('.member-card .card-wrapper');
+        if (!el) return;
+        html2canvas(el, { scale: 2, useCORS: true, backgroundColor: null }).then(function(canvas) {
+            var image = canvas.toDataURL('image/png');
+            var link = document.createElement('a');
+            link.download = 'Kartu-{{ $anggota->nama }}.png';
+            link.href = image;
+            link.click();
+        });
+    }
+
+    @if(request('download') === 'png')
+    setTimeout(function(){
+        downloadMemberCardPng();
+    }, 700);
+    @endif
 </script>
 @endsection
 
@@ -257,41 +313,77 @@
     <div class="row">
         <!-- Profile Card -->
         <div class="col-md-4 mb-4">
-            <div class="profile-card">
-                <div class="profile-image-wrapper">
-                    @if($anggota->foto)
-                        <img src="{{ asset('storage/anggotas/' . $anggota->foto) }}" 
-                             alt="{{ $anggota->nama }}" class="profile-image">
-                    @else
-                        <div class="profile-image bg-white d-flex align-items-center justify-content-center">
-                            <i class="fas fa-user fa-4x" style="color: #1976d2;"></i>
+            @php
+                $wilayahCabang = \App\Models\Wilayah::where('parent_id_cabang', $anggota->parent_id_cabang)->first();
+                $provinsiNama = $wilayahCabang && $wilayahCabang->parent ? $wilayahCabang->parent->nama : null;
+                $cabangNama = $wilayahCabang ? $wilayahCabang->nama : null;
+            @endphp
+            <div class="member-card">
+                <div class="card-scroll">
+                    <div class="card-wrapper">
+                        <div class="card-header">
+                            <div class="logo-right">
+                                <img src="{{ asset('images/rtik.jpg') }}" alt="Logo" style="width:44px;height:44px;object-fit:cover;">
+                            </div>
+                            <div class="title">Kartu anggota Relawan TIK</div>
+                            <div class="subtitle">Identitas anggota</div>
                         </div>
-                    @endif
-                    <div class="profile-badge">
-                        @if($anggota->status == 'Aktif')
-                            <i class="fas fa-check text-success"></i>
-                        @else
-                            <i class="fas fa-times text-danger"></i>
-                        @endif
+                        <div class="card-body">
+                            <div class="photo">
+                                @if($anggota->foto)
+                                    <img src="{{ asset('storage/anggotas/' . $anggota->foto) }}" alt="{{ $anggota->nama }}">
+                                @else
+                                    <i class="fas fa-user" style="font-size:64px;color:#888;"></i>
+                                @endif
+                            </div>
+                            <div class="info-col">
+                                <table class="info-table">
+                                    <tr>
+                                        <td class="label">NIA</td>
+                                        <td class="colon">:</td>
+                                        <td class="value"></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="label">Nama</td>
+                                        <td class="colon">:</td>
+                                        <td class="value">{{ $anggota->nama }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="label">Telepon</td>
+                                        <td class="colon">:</td>
+                                        <td class="value">{{ $anggota->telepon ?? '-' }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="label">Jenis Kelamin</td>
+                                        <td class="colon">:</td>
+                                        <td class="value">{{ $anggota->jenis_kelamin ?? '-' }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="label">Daerah</td>
+                                        <td class="colon">:</td>
+                                        <td class="value">{{ ($cabangNama ?? '-') . ' — ' . ($provinsiNama ?? '-') }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="label">Alamat</td>
+                                        <td class="colon">:</td>
+                                        <td class="value address">{{ $anggota->alamat ?? '-' }}</td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="footer"></div>
+                        <div class="barcode-fixed">
+                            <div id="qrcode-card" class="d-flex" style="width: fit-content;"></div>
+                        </div>
                     </div>
                 </div>
-                
-                <h3 class="mb-2">{{ $anggota->nama }}</h3>
-                <p class="mb-3 opacity-75">{{ $anggota->pekerjaan ?? 'Tidak ada pekerjaan' }}</p>
-                
-                <span class="badge {{ $anggota->status == 'Aktif' ? 'bg-success' : 'bg-danger' }} px-4 py-2">
-                    <i class="fas fa-circle me-1"></i>{{ $anggota->status }}
-                </span>
-                
-                @if($anggota->jabatan)
-                    <div class="mt-3">
-                        <span class="badge bg-light text-dark px-4 py-2">
-                            <i class="fas fa-user-tie me-1"></i>{{ $anggota->jabatan }}
-                        </span>
-                    </div>
-                @endif
             </div>
-            
+            <div class="d-flex gap-2 justify-content-center mt-2">
+                <button type="button" class="btn btn-sm btn-primary" onclick="downloadMemberCardPng()">
+                    <i class="fas fa-download me-1"></i>Download Kartu (PNG)
+                </button>
+            </div>
+        
             <!-- QR Code Card -->
             <div class="card mb-4 text-center p-3 shadow-sm border-0" style="border-radius: 8px;">
                 <h6 class="text-muted mb-3" style="font-size: 0.875rem; font-weight: 500;">ID CARD DIGITAL</h6>

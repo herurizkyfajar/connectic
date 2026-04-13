@@ -204,8 +204,23 @@
             margin-left: 260px;
             margin-top: 64px;
             padding: 30px;
-            min-height: calc(100vh - 64px);
+            min-height: calc(100vh - 64px - 48px);
             transition: margin-left 0.3s ease;
+        }
+
+        .footer {
+            margin-left: 260px;
+            background: linear-gradient(90deg, #0d47a1 0%, #1565c0 100%);
+            color: #ffffff;
+            padding: 12px 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 48px;
+            box-shadow: 0 -2px 10px rgba(0,0,0,0.08);
+            font-size: 13px;
+            font-weight: 500;
+            letter-spacing: 0.3px;
         }
 
         /* Cards */
@@ -402,6 +417,13 @@
             .main-content {
                 margin-left: 0;
                 padding: 20px 15px;
+                min-height: calc(100vh - 64px - 44px);
+            }
+
+            .footer {
+                margin-left: 0;
+                padding: 10px 15px;
+                min-height: 44px;
             }
 
             .card-header {
@@ -506,6 +528,12 @@
     <div class="main-content">
         @yield('content')
     </div>
+
+    <footer class="footer">
+        <div class="container-fluid text-center">
+            <span>Aplikasi ini dibuat oleh <strong>FURTIK</strong></span>
+        </div>
+    </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

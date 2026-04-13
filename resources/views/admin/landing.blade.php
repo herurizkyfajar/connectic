@@ -11,7 +11,7 @@
         body {
             min-height: 100vh;
             margin: 0;
-            background-color: #f3f4f6;
+            background: radial-gradient(1200px 600px at 10% -10%, #dbeafe 0, #f3f4f6 40%, #f3f4f6 100%);
             font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
             padding-top: 72px;
         }
@@ -35,15 +35,40 @@
         }
 
         .hero {
-            padding: 4rem 0 3rem;
-            background: radial-gradient(circle at top left, #4f46e5 0, #1e40af 35%, #020617 100%);
+            position: relative;
+            padding: 4.5rem 0 3.5rem;
+            background: radial-gradient(1000px 400px at -10% -20%, rgba(99,102,241,1) 0, rgba(30,64,175,1) 35%, rgba(2,6,23,1) 100%);
             color: #ffffff;
+            overflow: hidden;
+        }
+        .hero:before {
+            content: "";
+            position: absolute;
+            right: -120px;
+            top: -120px;
+            width: 360px;
+            height: 360px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(59,130,246,0.35), rgba(99,102,241,0));
+            filter: blur(6px);
+        }
+        .hero:after {
+            content: "";
+            position: absolute;
+            left: -80px;
+            bottom: -80px;
+            width: 260px;
+            height: 260px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(147,197,253,0.25), rgba(99,102,241,0));
+            filter: blur(6px);
         }
 
         .hero-title {
-            font-size: 2.4rem;
+            font-size: 2.6rem;
             font-weight: 800;
             letter-spacing: -0.04em;
+            line-height: 1.15;
         }
 
         @media (min-width: 992px) {
@@ -53,8 +78,8 @@
         }
 
         .hero-subtitle {
-            font-size: 1rem;
-            opacity: 0.9;
+            font-size: 1.05rem;
+            opacity: 0.92;
         }
 
         .hero-slide {
@@ -63,6 +88,12 @@
             padding: 2rem;
             background: linear-gradient(135deg, rgba(15, 23, 42, 0.85), rgba(37, 99, 235, 0.85));
             box-shadow: 0 24px 60px rgba(15, 23, 42, 0.7);
+            backdrop-filter: saturate(1.2) blur(2px);
+            transition: transform .25s ease, box-shadow .25s ease;
+        }
+        .hero-slide:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 30px 70px rgba(15, 23, 42, 0.75);
         }
 
         .hero-badge {
@@ -89,7 +120,7 @@
         }
 
         .stats-section {
-            padding: 3rem 0;
+            padding: 3.2rem 0;
         }
 
         .stat-card {
@@ -101,6 +132,12 @@
             flex-direction: column;
             gap: 0.35rem;
             height: 100%;
+            border: 1px solid rgba(226,232,240,0.8);
+            transition: transform .2s ease, box-shadow .2s ease;
+        }
+        .stat-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 18px 45px rgba(15, 23, 42, 0.12);
         }
 
         .stat-icon {
@@ -125,12 +162,17 @@
         }
 
         .latest-section {
-            padding: 3rem 0 3.5rem;
+            padding: 3.2rem 0 3.6rem;
         }
 
         .activity-card {
             border-radius: 1.1rem;
             box-shadow: 0 14px 40px rgba(15, 23, 42, 0.07);
+            transition: transform .2s ease, box-shadow .2s ease;
+        }
+        .activity-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 18px 45px rgba(15, 23, 42, 0.12);
         }
 
         .activity-card .card-body {
@@ -147,9 +189,15 @@
         }
 
         .app-footer {
-            background-color: #020617;
+            background: radial-gradient(800px 400px at -30% 120%, #0b1223 0, #020617 60%, #020617 100%);
             color: #ffffff;
-            padding: 2.5rem 0 1.75rem;
+            padding: 2.6rem 0 1.9rem;
+        }
+        .glass-nav {
+            backdrop-filter: saturate(1.2) blur(8px);
+            background-color: rgba(255,255,255,0.85);
+            border-bottom: 1px solid rgba(226,232,240,0.8);
+            box-shadow: 0 8px 24px rgba(2, 6, 23, 0.06);
         }
 
         .app-footer .footer-link {
@@ -192,7 +240,7 @@
         }
     @endphp
 
-    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm fixed-top glass-nav">
         <div class="container">
             <a href="{{ route('landing') }}" class="navbar-brand d-flex align-items-center">
                 <div class="navbar-brand-logo me-2">
@@ -239,7 +287,7 @@
 
                     </div>
                     <div class="col-lg-6">
-                        <div id="heroCarousel" class="carousel slide" data-bs-ride="carousel">
+                        <div id="heroCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel">
                             <div class="carousel-inner">
                                 <div class="carousel-item active">
                                     <div class="hero-slide d-flex flex-column justify-content-center">
@@ -517,6 +565,7 @@
             <div class="border-top border-secondary mt-3 pt-3 d-flex justify-content-between small text-muted flex-column flex-md-row">
                 <span>© {{ date('Y') }} ConnecTIK. Semua hak dilindungi.</span>
                 <span>Relawan TIK Indonesia</span>
+                <span>Aplikasi ini dibuat oleh <strong>FURTIK</strong></span>
             </div>
         </div>
     </footer>

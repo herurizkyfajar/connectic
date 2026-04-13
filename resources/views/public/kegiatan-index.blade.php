@@ -293,6 +293,7 @@
             <div class="border-top border-secondary mt-3 pt-3 d-flex justify-content-between small text-muted flex-column flex-md-row">
                 <span>© {{ date('Y') }} ConnecTIK. Semua hak dilindungi.</span>
                 <span>Relawan TIK Indonesia</span>
+                <span>Aplikasi ini dibuat oleh <strong>FURTIK</strong></span>
             </div>
         </div>
     </footer>
