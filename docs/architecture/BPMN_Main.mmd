@@ -1,0 +1,38 @@
+graph TD
+    subgraph "Sistem Informasi RTIK"
+        Start((Mulai)) --> Login{Login?}
+        
+        Login -- Admin --> AdminDashboard[Admin Dashboard]
+        Login -- Anggota --> AnggotaDashboard[Anggota Dashboard]
+        Login -- Public --> LandingPage[Landing Page]
+
+        subgraph "Proses Admin"
+            AdminDashboard --> ManageAnggota[Kelola Data Anggota]
+            AdminDashboard --> ManageKegiatan[Kelola Kegiatan]
+            AdminDashboard --> ManageKeuangan[Kelola Keuangan]
+            AdminDashboard --> ManageLMS[Kelola LMS/Academy]
+            AdminDashboard --> ManageSertifikat[Kelola Sertifikat]
+            
+            ManageKegiatan --> CreateKegiatan[Buat Kegiatan Baru]
+            CreateKegiatan --> PublishAbsensi[Buka Absensi]
+            PublishAbsensi --> RekapAbsensi[Rekap Kehadiran]
+            RekapAbsensi --> GenerateSertifikat[Generate Sertifikat Peserta]
+        end
+
+        subgraph "Proses Anggota"
+            AnggotaDashboard --> UpdateProfile[Update Profil]
+            AnggotaDashboard --> ViewAcademy[Akses Academy/LMS]
+            AnggotaDashboard --> DoAbsensi[Lakukan Absensi Kegiatan]
+            AnggotaDashboard --> DownloadSertifikat[Download Sertifikat]
+            AnggotaDashboard --> ViewMeetingNotes[Lihat Catatan Rapat]
+            
+            ViewAcademy --> ReadMaterial[Baca Materi]
+            DoAbsensi --> UploadBukti[Upload Bukti Kehadiran]
+        end
+
+        subgraph "Proses Public"
+            LandingPage --> ViewPublicProfile[Lihat Profil Anggota]
+            LandingPage --> AdminLogin[Login Admin]
+            LandingPage --> AnggotaLogin[Login Anggota]
+        end
+    end

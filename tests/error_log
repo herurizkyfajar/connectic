@@ -1,0 +1,12 @@
+[27-Nov-2025 02:11:26 Asia/Jakarta] PHP Fatal error:  Uncaught Error: Class "Illuminate\Foundation\Testing\TestCase" not found in /home/herb6535/public_html/app.rtikcmh.com/tests/TestCase.php:7
+Stack trace:
+#0 {main}
+  thrown in /home/herb6535/public_html/app.rtikcmh.com/tests/TestCase.php on line 7
+[27-Nov-2025 02:11:31 Asia/Jakarta] PHP Fatal error:  Uncaught Error: Class "Illuminate\Foundation\Testing\TestCase" not found in /home/herb6535/public_html/app.rtikcmh.com/tests/TestCase.php:7
+Stack trace:
+#0 {main}
+  thrown in /home/herb6535/public_html/app.rtikcmh.com/tests/TestCase.php on line 7
+[27-Nov-2025 02:11:32 Asia/Jakarta] PHP Fatal error:  Uncaught Error: Class "Illuminate\Foundation\Testing\TestCase" not found in /home/herb6535/public_html/app.rtikcmh.com/tests/TestCase.php:7
+Stack trace:
+#0 {main}
+  thrown in /home/herb6535/public_html/app.rtikcmh.com/tests/TestCase.php on line 7

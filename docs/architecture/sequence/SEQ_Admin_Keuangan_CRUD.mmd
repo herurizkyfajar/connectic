@@ -1,0 +1,42 @@
+sequenceDiagram
+    actor Admin
+    participant View as View Index/Form
+    participant Controller as KeuanganController
+    participant Model as Keuangan Model
+    participant Storage as File Storage
+    participant DB as Database
+    
+    Admin->>View: Buka Menu Keuangan
+    View->>Controller: GET /admin/keuangan
+    Controller->>Model: Query (Filter Role/Search)
+    Model-->>Controller: Return Data
+    Controller-->>View: Render List
+    
+    opt Tambah Transaksi
+        Admin->>View: Klik Tambah
+        View->>Controller: GET /create
+        Controller-->>View: Form Create
+        
+        Admin->>View: Submit Data (incl. File)
+        View->>Controller: POST /store
+        
+        Note right of Controller: Normalisasi Mata Uang (Remove dots/commas)
+        
+        opt Ada File Bukti
+            Controller->>Storage: Put File
+            Storage-->>Controller: Path File
+        end
+        
+        Controller->>Model: Create(Data)
+        Model->>DB: Insert
+        DB-->>Model: Success
+        Controller-->>View: Redirect with Success
+    end
+    
+    opt Lihat Laporan
+        Admin->>View: Buka Menu Laporan
+        View->>Controller: GET /report
+        Controller->>Model: Calculate Sum & Group By Date
+        Model-->>Controller: Aggregated Data
+        Controller-->>View: Render Charts (Chart.js Data)
+    end

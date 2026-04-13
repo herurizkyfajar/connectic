@@ -1,0 +1,25 @@
+sequenceDiagram
+    actor Admin
+    participant View as Anggota Index
+    participant Controller as AnggotaController
+    participant Model as Anggota Model
+    participant DB as Database
+
+    Admin->>View: Klik Menu Anggota
+    View->>Controller: GET /admin/anggota
+    Controller->>Model: Anggota::all()
+    Model->>DB: Select * From anggotas
+    DB-->>Model: Return Collection
+    Model-->>Controller: Return Data
+    Controller-->>View: Render Tabel Anggota
+
+    Admin->>View: Klik Tambah Anggota
+    View->>Controller: GET /admin/anggota/create
+    Controller-->>View: Tampilkan Form Create
+
+    Admin->>View: Submit Data Anggota
+    View->>Controller: POST /admin/anggota
+    Controller->>Model: Anggota::create(data)
+    Model->>DB: Insert into anggotas
+    DB-->>Model: Return Created ID
+    Controller-->>View: Redirect with Success

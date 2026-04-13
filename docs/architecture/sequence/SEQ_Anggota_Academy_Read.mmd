@@ -1,0 +1,23 @@
+sequenceDiagram
+    actor Anggota
+    participant View as Academy Page
+    participant Route as Web Route
+    participant DB as Database
+
+    Anggota->>View: Buka Menu Academy
+    View->>Route: GET /anggota/academy
+    Route->>DB: Fetch Lms::where('published')
+    DB-->>Route: Return List Materi
+    Route-->>View: Tampilkan Daftar Materi
+
+    Anggota->>View: Klik Materi
+    View->>Route: GET /anggota/academy/{slug}
+    Route->>DB: Fetch Detail Materi
+    DB-->>Route: Return Detail
+    Route-->>View: Tampilkan Konten Materi
+
+    Anggota->>View: Klik "Sudah Membaca"
+    View->>Route: POST /anggota/academy/{slug}/read
+    Route->>DB: Insert into lms_reads
+    DB-->>Route: Success
+    Route-->>View: Redirect with Success Message

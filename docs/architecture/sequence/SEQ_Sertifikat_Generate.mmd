@@ -1,0 +1,35 @@
+sequenceDiagram
+    actor User as Admin/Anggota
+    participant View as View Sertifikat
+    participant Controller as SertifikatController
+    participant Model as Sertifikat Model
+    participant Storage as File Storage
+    participant DB as Database
+    
+    User->>View: Input Data Sertifikat
+    View->>Controller: POST /store
+    
+    opt Upload File
+        Controller->>Storage: Put File
+        Storage-->>Controller: Filename
+    end
+    
+    Controller->>Model: Create(Data + Filename)
+    Model->>DB: Insert
+    DB-->>Model: Success
+    Controller-->>View: Redirect Success
+    
+    opt Download File
+        User->>View: Klik Download
+        View->>Controller: GET /download/{id}
+        
+        Controller->>Model: FindOrFail
+        Controller->>Controller: Check Access (Owner/Admin)
+        
+        alt Allowed & File Exists
+            Controller->>Storage: Download(path)
+            Storage-->>User: Stream File
+        else Denied/Missing
+            Controller-->>View: Error Message
+        end
+    end

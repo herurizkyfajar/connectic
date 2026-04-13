@@ -1,0 +1,120 @@
+[27-Nov-2025 02:11:26 Asia/Jakarta] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/herb6535/public_html/app.rtikcmh.com/config/filesystems.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/herb6535/public_html/app.rtikcmh.com/config/filesystems.php on line 16
+[27-Nov-2025 02:11:26 Asia/Jakarta] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/herb6535/public_html/app.rtikcmh.com/config/logging.php:21
+Stack trace:
+#0 {main}
+  thrown in /home/herb6535/public_html/app.rtikcmh.com/config/logging.php on line 21
+[27-Nov-2025 02:11:26 Asia/Jakarta] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/herb6535/public_html/app.rtikcmh.com/config/app.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/herb6535/public_html/app.rtikcmh.com/config/app.php on line 16
+[27-Nov-2025 02:11:26 Asia/Jakarta] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/herb6535/public_html/app.rtikcmh.com/config/auth.php:17
+Stack trace:
+#0 {main}
+  thrown in /home/herb6535/public_html/app.rtikcmh.com/config/auth.php on line 17
+[27-Nov-2025 02:11:26 Asia/Jakarta] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/herb6535/public_html/app.rtikcmh.com/config/logging.php:21
+Stack trace:
+#0 {main}
+  thrown in /home/herb6535/public_html/app.rtikcmh.com/config/logging.php on line 21
+[27-Nov-2025 02:11:26 Asia/Jakarta] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/herb6535/public_html/app.rtikcmh.com/config/auth.php:17
+Stack trace:
+#0 {main}
+  thrown in /home/herb6535/public_html/app.rtikcmh.com/config/auth.php on line 17
+[27-Nov-2025 02:11:31 Asia/Jakarta] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/herb6535/public_html/app.rtikcmh.com/config/cache.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/herb6535/public_html/app.rtikcmh.com/config/cache.php on line 18
+[27-Nov-2025 02:11:31 Asia/Jakarta] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/herb6535/public_html/app.rtikcmh.com/config/session.php:21
+Stack trace:
+#0 {main}
+  thrown in /home/herb6535/public_html/app.rtikcmh.com/config/session.php on line 21
+[27-Nov-2025 02:11:31 Asia/Jakarta] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/herb6535/public_html/app.rtikcmh.com/config/queue.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/herb6535/public_html/app.rtikcmh.com/config/queue.php on line 16
+[27-Nov-2025 02:11:31 Asia/Jakarta] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/herb6535/public_html/app.rtikcmh.com/config/services.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/herb6535/public_html/app.rtikcmh.com/config/services.php on line 18
+[27-Nov-2025 02:11:31 Asia/Jakarta] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/herb6535/public_html/app.rtikcmh.com/config/database.php:19
+Stack trace:
+#0 {main}
+  thrown in /home/herb6535/public_html/app.rtikcmh.com/config/database.php on line 19
+[27-Nov-2025 02:11:31 Asia/Jakarta] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/herb6535/public_html/app.rtikcmh.com/config/mail.php:17
+Stack trace:
+#0 {main}
+  thrown in /home/herb6535/public_html/app.rtikcmh.com/config/mail.php on line 17
+[27-Nov-2025 02:11:31 Asia/Jakarta] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/herb6535/public_html/app.rtikcmh.com/config/app.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/herb6535/public_html/app.rtikcmh.com/config/app.php on line 16
+[27-Nov-2025 02:11:31 Asia/Jakarta] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/herb6535/public_html/app.rtikcmh.com/config/filesystems.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/herb6535/public_html/app.rtikcmh.com/config/filesystems.php on line 16
+[27-Nov-2025 02:11:31 Asia/Jakarta] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/herb6535/public_html/app.rtikcmh.com/config/logging.php:21
+Stack trace:
+#0 {main}
+  thrown in /home/herb6535/public_html/app.rtikcmh.com/config/logging.php on line 21
+[27-Nov-2025 02:11:31 Asia/Jakarta] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/herb6535/public_html/app.rtikcmh.com/config/auth.php:17
+Stack trace:
+#0 {main}
+  thrown in /home/herb6535/public_html/app.rtikcmh.com/config/auth.php on line 17
+[27-Nov-2025 02:11:32 Asia/Jakarta] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/herb6535/public_html/app.rtikcmh.com/config/app.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/herb6535/public_html/app.rtikcmh.com/config/app.php on line 16
+[27-Nov-2025 02:11:32 Asia/Jakarta] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/herb6535/public_html/app.rtikcmh.com/config/filesystems.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/herb6535/public_html/app.rtikcmh.com/config/filesystems.php on line 16
+[27-Nov-2025 02:11:32 Asia/Jakarta] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/herb6535/public_html/app.rtikcmh.com/config/session.php:21
+Stack trace:
+#0 {main}
+  thrown in /home/herb6535/public_html/app.rtikcmh.com/config/session.php on line 21
+[27-Nov-2025 02:11:32 Asia/Jakarta] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/herb6535/public_html/app.rtikcmh.com/config/database.php:19
+Stack trace:
+#0 {main}
+  thrown in /home/herb6535/public_html/app.rtikcmh.com/config/database.php on line 19
+[27-Nov-2025 02:11:32 Asia/Jakarta] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/herb6535/public_html/app.rtikcmh.com/config/cache.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/herb6535/public_html/app.rtikcmh.com/config/cache.php on line 18
+[27-Nov-2025 02:11:32 Asia/Jakarta] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/herb6535/public_html/app.rtikcmh.com/config/mail.php:17
+Stack trace:
+#0 {main}
+  thrown in /home/herb6535/public_html/app.rtikcmh.com/config/mail.php on line 17
+[27-Nov-2025 02:11:32 Asia/Jakarta] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/herb6535/public_html/app.rtikcmh.com/config/queue.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/herb6535/public_html/app.rtikcmh.com/config/queue.php on line 16
+[27-Nov-2025 02:11:32 Asia/Jakarta] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/herb6535/public_html/app.rtikcmh.com/config/services.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/herb6535/public_html/app.rtikcmh.com/config/services.php on line 18
+[27-Nov-2025 02:11:33 Asia/Jakarta] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/herb6535/public_html/app.rtikcmh.com/config/session.php:21
+Stack trace:
+#0 {main}
+  thrown in /home/herb6535/public_html/app.rtikcmh.com/config/session.php on line 21
+[27-Nov-2025 02:11:33 Asia/Jakarta] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/herb6535/public_html/app.rtikcmh.com/config/cache.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/herb6535/public_html/app.rtikcmh.com/config/cache.php on line 18
+[27-Nov-2025 02:11:33 Asia/Jakarta] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/herb6535/public_html/app.rtikcmh.com/config/mail.php:17
+Stack trace:
+#0 {main}
+  thrown in /home/herb6535/public_html/app.rtikcmh.com/config/mail.php on line 17
+[27-Nov-2025 02:11:33 Asia/Jakarta] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/herb6535/public_html/app.rtikcmh.com/config/queue.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/herb6535/public_html/app.rtikcmh.com/config/queue.php on line 16
+[27-Nov-2025 02:11:33 Asia/Jakarta] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/herb6535/public_html/app.rtikcmh.com/config/database.php:19
+Stack trace:
+#0 {main}
+  thrown in /home/herb6535/public_html/app.rtikcmh.com/config/database.php on line 19
+[27-Nov-2025 02:11:33 Asia/Jakarta] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/herb6535/public_html/app.rtikcmh.com/config/services.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/herb6535/public_html/app.rtikcmh.com/config/services.php on line 18

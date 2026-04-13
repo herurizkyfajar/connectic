@@ -1,0 +1,62 @@
+# ==============================================================================
+# .htaccess Helper untuk Storage di cPanel
+# ==============================================================================
+# 
+# Jika symlink tidak berfungsi, Anda bisa menambahkan redirect rule ini
+# ke file public/.htaccess untuk redirect storage requests
+#
+# CATATAN: Ini adalah OPSI ALTERNATIF. Aplikasi sudah diupdate untuk bekerja
+# tanpa ini melalui route fallback, jadi ini hanya jika Anda ingin approach
+# yang berbeda.
+# ==============================================================================
+
+# Redirect storage requests ke actual storage path
+# Uncomment baris di bawah jika ingin menggunakan approach ini
+
+# RewriteEngine On
+# RewriteRule ^storage/(.*)$ ../storage/app/public/$1 [L,NC]
+
+# ==============================================================================
+# ATAU, jika Anda ingin serve static files untuk performa lebih baik:
+# ==============================================================================
+
+# <IfModule mod_rewrite.c>
+#     RewriteEngine On
+#     
+#     # Serve storage files directly
+#     RewriteCond %{REQUEST_URI} ^/storage/anggotas/(.*)$ [NC]
+#     RewriteCond %{DOCUMENT_ROOT}/../storage/app/public/anggotas/%1 -f
+#     RewriteRule ^storage/anggotas/(.*)$ ../storage/app/public/anggotas/$1 [L]
+#     
+#     RewriteCond %{REQUEST_URI} ^/storage/sertifikats/(.*)$ [NC]
+#     RewriteCond %{DOCUMENT_ROOT}/../storage/app/public/sertifikats/%1 -f
+#     RewriteRule ^storage/sertifikats/(.*)$ ../storage/app/public/sertifikats/$1 [L]
+#     
+#     # Handle other storage files
+#     RewriteCond %{REQUEST_URI} ^/storage/(.*)$ [NC]
+#     RewriteCond %{DOCUMENT_ROOT}/../storage/app/public/%1 -f
+#     RewriteRule ^storage/(.*)$ ../storage/app/public/$1 [L]
+# </IfModule>
+
+# ==============================================================================
+# CATATAN PENTING:
+# ==============================================================================
+# 
+# 1. Approach ini TIDAK DIPERLUKAN karena aplikasi sudah menggunakan route
+#    fallback yang otomatis handle missing symlink
+# 
+# 2. Jika Anda ingin menggunakan ini:
+#    - Copy rules di atas
+#    - Paste ke bagian atas file public/.htaccess
+#    - Uncomment (hapus tanda #)
+#    - Adjust path jika struktur folder berbeda
+# 
+# 3. Jangan gunakan ini DAN route fallback bersamaan (pilih salah satu)
+# 
+# 4. Route fallback (yang sudah diimplementasi) lebih mudah dan reliable
+#    untuk shared hosting
+# 
+# ==============================================================================
+# RECOMMENDED: Tetap gunakan route fallback yang sudah ada
+# ==============================================================================
+

@@ -1,0 +1,27 @@
+sequenceDiagram
+    actor Admin
+    participant View as View Pengajuan
+    participant Controller as PengajuanController
+    participant Model as Pengajuan Model
+    participant DB as Database
+    
+    Admin->>View: Buka Menu Pengajuan
+    View->>Controller: GET /admin/pengajuan
+    
+    alt Role = Admin Wilayah
+        Controller->>Model: Where parent_id = user_id
+    else Role = Super Admin
+        Controller->>Model: All Data
+    end
+    
+    Model-->>Controller: Data List
+    Controller-->>View: Render Table
+    
+    opt Update Status
+        Admin->>View: Klik Edit Status
+        View->>Controller: PUT /update/{id}
+        Controller->>Model: Update(status)
+        Model->>DB: UPDATE pengajuans SET status = ...
+        DB-->>Model: Success
+        Controller-->>View: Redirect Success
+    end

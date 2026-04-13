@@ -1,0 +1,103 @@
+# ========================================
+# CPANEL DEPLOYMENT COMMANDS
+# Untuk hosting yang DISABLE exec() function
+# ========================================
+
+# STEP 1: Navigate ke folder Laravel
+cd /home/username/laravel
+# ⚠️ Ganti 'username' dengan cPanel username Anda!
+
+# ========================================
+# STEP 2: Set Permissions
+# ========================================
+chmod -R 755 storage
+chmod -R 755 bootstrap/cache
+
+# Jika masih error permission:
+# chmod -R 777 storage
+# chmod -R 777 bootstrap/cache
+
+# ========================================
+# STEP 3: Clear Cache ONLY (JANGAN cache!)
+# ========================================
+# ✅ AMAN - Jalankan ini:
+php artisan config:clear
+php artisan cache:clear
+php artisan view:clear
+php artisan route:clear
+
+# ❌ SKIP - JANGAN jalankan ini (butuh exec):
+# php artisan config:cache
+# php artisan route:cache
+# php artisan view:cache
+
+# ========================================
+# STEP 4: Database Migration
+# ========================================
+php artisan migrate --force
+
+# Jika error, import via phpMyAdmin instead
+
+# ========================================
+# STEP 5: Check if everything OK
+# ========================================
+php artisan --version
+php artisan list
+
+# ========================================
+# STEP 6: Storage Symlink
+# ========================================
+# Coba dulu via artisan:
+php artisan storage:link
+
+# Jika error, gunakan script PHP:
+# Upload cpanel_create_symlink.php ke public_html/
+# Akses via browser, lalu HAPUS file tersebut!
+
+# ========================================
+# DONE! Test website:
+# https://yourdomain.com
+# ========================================
+
+# ========================================
+# TROUBLESHOOTING
+# ========================================
+
+# Check PHP version:
+php -v
+
+# Check database connection:
+php artisan tinker
+# Lalu ketik: DB::connection()->getPdo();
+# Ctrl+C untuk exit
+
+# View logs:
+tail -f storage/logs/laravel.log
+
+# Clear everything:
+php artisan optimize:clear
+# (Ini aman, tidak butuh exec)
+
+# Check .env loaded:
+php artisan config:show database
+
+# ========================================
+# MAINTENANCE MODE
+# ========================================
+
+# Enable maintenance:
+php artisan down
+
+# Disable maintenance:
+php artisan up
+
+# ========================================
+# NOTES
+# ========================================
+# 1. JANGAN run *:cache commands jika exec() disabled
+# 2. Website tetap bisa jalan tanpa cache (sedikit lebih lambat)
+# 3. Untuk speed optimal, minta hosting enable exec()
+# 4. Pastikan .env file ada dan benar
+# 5. DB_HOST=localhost di server (bukan IP)
+
+

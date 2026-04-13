@@ -1,0 +1,55 @@
+graph TD
+    %% Entry Points
+    Start((Mulai)) --> Public[Halaman Publik]
+    Public --> Landing[Landing Page]
+    Public --> PubKegiatan[Daftar Kegiatan]
+    Public --> PubDocs[Dokumentasi]
+    Public --> Auth[Autentikasi]
+
+    %% Authentication
+    Auth --> LoginAdmin[Login Admin]
+    Auth --> LoginAnggota[Login Anggota]
+
+    %% Admin Roles Flow
+    LoginAdmin --> |Valid| CheckRole{Cek Role}
+    
+    CheckRole --> |Admin Nasional| DashNas[Dashboard Nasional]
+    CheckRole --> |Admin Wilayah| DashWil[Dashboard Wilayah]
+    CheckRole --> |Admin Cabang/Lain| DashGen[Dashboard Umum]
+
+    %% Anggota Flow
+    LoginAnggota --> |Valid| AnggotaHome[Beranda Anggota]
+
+    %% Admin Nasional Menu
+    subgraph Admin_Nasional [Menu Admin Nasional]
+        DashNas
+        MenuNas1[Kelola Wilayah]
+        MenuNas2[Kegiatan & Kalender]
+        MenuNas3[Anggota]
+        MenuNas4[LMS]
+        MenuNas5[Analisis Keaktifan]
+        MenuNas6[Tentang RTIK]
+        MenuNas7[Kelola Akun]
+    end
+
+    %% Admin Wilayah Menu
+    subgraph Admin_Wilayah [Menu Admin Wilayah]
+        DashWil
+        MenuWil1[Kelola Wilayah]
+        MenuWil2[Kegiatan & Kalender]
+        MenuWil3[Kelola Anggota]
+        MenuWil4[Meeting Notes]
+        MenuWil5[Pengajuan]
+        MenuWil6[Keuangan]
+        MenuWil7[Kelola Akun]
+    end
+
+    %% Anggota Menu
+    subgraph Anggota_Area [Area Anggota]
+        AnggotaHome
+        NavAng1[Daftar Anggota]
+        NavAng2[Academy / LMS]
+        NavAng3[Kalender Kegiatan]
+        NavAng4[Profile & Edit]
+        NavAng5[Sertifikat & Absensi]
+    end

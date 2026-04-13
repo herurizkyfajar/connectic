@@ -1,0 +1,21 @@
+sequenceDiagram
+    actor Anggota
+    participant View as Absensi Form
+    participant Controller as AbsensiKegiatanController
+    participant Model as AbsensiKegiatan
+    participant Storage as File Storage
+
+    Anggota->>View: Pilih Kegiatan untuk Absensi
+    View->>Controller: GET /anggota/absensi-kegiatan/create
+    Controller-->>View: Tampilkan Form
+
+    Anggota->>View: Isi Form & Upload Bukti
+    View->>Controller: POST /anggota/absensi-kegiatan
+    
+    Controller->>Storage: Store Image
+    Storage-->>Controller: Return File Path
+    
+    Controller->>Model: Create Absensi Record
+    Model-->>Controller: Success
+    
+    Controller-->>View: Redirect with Success
