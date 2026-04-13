@@ -1,4 +1,0 @@
-deployment:
-  branch: main
-  document_root: public_html/app.rtikcmh.com/
-  repo: https://github.com/herurizkyfajar/connectic.git
